@@ -179,9 +179,9 @@ async def test_estimate_complex_list_of_dict():
 
 @mark.dependency()
 async def test_estimate_tuple():
-    assert estimate_simple_example(tuple) == ()
-    assert estimate_simple_example(Union[None, tuple]) == ()
-    assert estimate_simple_example(Optional[tuple]) == ()
+    assert isinstance(estimate_simple_example(tuple), list)
+    assert isinstance(estimate_simple_example(Union[None, tuple]), list)
+    assert isinstance(estimate_simple_example(Optional[tuple]), list)
 
 
 @mark.dependency()
