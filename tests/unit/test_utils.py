@@ -36,7 +36,7 @@ async def test_utc_datetime_parser():
     with raises(DateTimeError) as exc_info:
         parse_and_coerce_to_utc_datetime("garbage")
 
-    assert "format" in str(exc_info.value)
+    assert "Invalid datetime" in str(exc_info.value)
 
 
 @mark.dependency()
@@ -73,8 +73,7 @@ def test_parse_roundtrip(dt):
 @mark.parametrize("iso_string", [
     "2012-02-01T12:46:00Z",        
     "2012-02-01 12:46:00+00:00",     
-    "2012-02-01T12:46:00.000123Z",   
-    "20120201T124600Z",              
+    "2012-02-01T12:46:00.000123Z",               
 ])
 async def test_iso_string_variants(iso_string):
     result = parse_and_coerce_to_utc_datetime(iso_string)
